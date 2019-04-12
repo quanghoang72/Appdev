@@ -2,7 +2,7 @@
 //#define DEBUG
 #define RATE 16000 				// samples per second
 #define CMD "arecord -r16000 -c1 -f S16_LE -d1 -q test.wav"
-
+#define PI 3.1415926
 // data structures
 struct WAVHDR {
 	char ChunkID[4];			// it has to be 'RIFT'
@@ -19,8 +19,9 @@ struct WAVHDR {
 	short BitsPerSample;		// in our app, 16 (-f S16_LE)
 
 	char Subchunk2ID[4];		// "data"
-	int Subchunk2Size;			// 
+	int Subchunk2Size;			//
 };
 //function decalaration
 void displayWAVHDR(struct WAVHDR h);
 void displayWAVDATA(short []);
+void testTone(int, int, float);
