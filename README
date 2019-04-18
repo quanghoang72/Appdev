@@ -2,7 +2,7 @@
 This project is to run a Raspberry PI as an audio device.The device is able to
 do 2 functions: as a sound collector and as a test-tone generator
 
-Table of Contnet
+Table of Content
     1. Configuration Instructions
     2. Installation Instructions
     3. Operating Instructing
@@ -19,6 +19,73 @@ microphone.
 
 1.1 Configure USB sound card as default audio device
 
-....
+	- Make sure the usb sound card is connected to the Raspberry Pi. 
+	- Use command:"sudo nano /etc/asound.conf" and put following content to the file:
+			pcm.!default {
+				type plug
+				slave {
+					pcm "hw:1,0"
+				}
+			}
+			ctl.!default {
+				type hw
+				card 1
+			}
+
+	- Return to your home direction, use "nano .asoundrc" command and do the same content to this file. 
+		Run "alsamixer", you should be able to see that USB sound card is the default audio device.
 
 1.2 Install Libcurl library
+
+	- Use command "ls /usr/include/curl" or "ls /usr/include/arm-linux-gnueabihf/curl" to identify that libcurl library is installed.
+	- If the folder doesn’t exist. Run “sudo apt-get update” to update the application list.
+	- Run “sudo apt-get install libcurl3” to install the libcurl3.
+	- Run “sudo apt-get install libcurl4-openssl-dev” to install the development API of libcurl4.
+
+2. Installation Instructions
+
+	- Insert the micro SD card into the Raspberry. 
+	- Connect the Raspberry Pi by RJ45 cable to the internet.
+	- Attach the USB sound card to USB port in Raspberry device.
+	- Put the microphone to the microphone slot in the sound card.
+	- Check for the LAN LED on the Raspberry Pi blinks as it connection is good.
+	- Connect the power suply and open the linux application to use the Raspberry device.
+
+3. Operating Instructions
+
+	- Use your IP address which is sent to your email inbox to connect to the sever.
+	- Login the Raspberry Pi with your personal account.
+	- Make direct to the project folder and run the application.
+	- Record the sound with the microphone.
+	- The result is displayed on the screen.
+
+4. File manifest
+
+	main.c
+	sound.c
+	sound.h
+	screen.c
+	screen.h
+	comm.c
+	comm.h
+	makefile
+	sound.php
+	curltest.c
+	README
+
+5. Copyright/Copyleft
+
+	COPYRIGHT (c) 2019 QUANG HOANG NGUYEN
+
+6. Contact Information
+	
+		HOANG NGUYEN, e1800916
+	Dept. of Information technology
+	Vaasa University of Applied Sciences
+	Woffintie 30, 65100, Vaasa, Finland
+	page: www.cc.puv.fi/~e1800916/
+
+7. Credits and Acknowledgements
+	
+	Thanks for Dr.Gao Chao for spending time on helping this project.
+
